@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useTheme } from './ThemeContext';
+import styled, { withTheme } from 'styled-components';
+import { buttonBackgroundColor, buttonTextColor, backgroundColor, textColor } from './theme';
 
-function App() {
+
+const AppWrapper = styled.div`
+height: 100vh;
+background-color: ${backgroundColor};
+color: ${textColor};
+`
+
+function App({theme}) {
+  const themeToggle = useTheme();
+  const Button = styled.button`
+    background: ${buttonBackgroundColor};
+    color: ${buttonTextColor};
+ `;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrapper className="App">
+        <Button 
+          onClick={() => themeToggle.toggle()}
+         >
+          { theme.mode === 'dark' 
+            ? "Switch to Light Mode" 
+            : "Switch to Dark Mode"
+          }
+        </Button>
+    </AppWrapper>
   );
 }
 
-export default App;
+export default withTheme(App);
