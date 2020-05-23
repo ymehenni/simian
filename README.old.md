@@ -1,2 +1,0 @@
-# simian
-Simc web application
