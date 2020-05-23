@@ -1,18 +1,17 @@
 import React from "react";
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from "styled-components";
 
 const ThemeToggleContext = React.createContext();
 
 export const useTheme = () => React.useContext(ThemeToggleContext);
 
 export const CustomThemeProvider = ({ children }) => {
-
   const [themeState, setThemeState] = React.useState({
-    mode: 'light'
+    mode: "dark",
   });
 
   const toggle = () => {
-    const mode = (themeState.mode === 'light' ? `dark` : `light`);
+    const mode = themeState.mode === "light" ? `dark` : `light`;
     setThemeState({ mode: mode });
   };
 
@@ -20,10 +19,10 @@ export const CustomThemeProvider = ({ children }) => {
     <ThemeToggleContext.Provider value={{ toggle: toggle }}>
       <ThemeProvider
         theme={{
-          mode: themeState.mode
+          mode: themeState.mode,
         }}
       >
-          {children}
+        {children}
       </ThemeProvider>
     </ThemeToggleContext.Provider>
   );
