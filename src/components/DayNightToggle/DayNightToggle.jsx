@@ -3,7 +3,11 @@ import "./DayNightToggle.css";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  transform: scale(0.4);
+  transform: scale(0.35);
+  width: min-content;
+  position: fixed;
+  top: -12px;
+  right: -40px;
 `;
 
 export const DayNightToggle = ({ onToggle }) => {
